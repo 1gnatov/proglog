@@ -53,6 +53,11 @@ func (i *index) Close() error {
 	if err := i.mmap.Sync(gommap.MS_SYNC); err != nil {
 		return err
 	}
+	// windows hack: avoiding error "The requested operation cannot be performed on a file with a user-mapped section open."
+	if err := i.mmap.UnsafeUnmap(); err != nil {
+		return err
+	}
+	// windows hack end
 	if err := i.file.Sync(); err != nil {
 		return err
 	}
