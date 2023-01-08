@@ -19,14 +19,6 @@ type index struct {
 	size uint64
 }
 
-type segment struct {
-	MaxIndexBytes uint64
-}
-
-type Config struct {
-	Segment segment
-}
-
 func newIndex(f *os.File, c Config) (*index, error) {
 	idx := &index{
 		file: f,
@@ -67,11 +59,12 @@ func (i *index) Close() error {
 	return i.file.Close()
 }
 
+// Returns absolute offset and stored position in store file
 func (i *index) Read(in int64) (out uint32, pos uint64, err error) {
 	if i.size == 0 {
 		return 0, 0, io.EOF
 	}
-	if in == -1 { // тут есть вопросы к работе, пока всего лишь ищет последнюю позицию в
+	if in == -1 {
 		out = uint32((i.size / entWidth) - 1)
 	} else {
 		out = uint32(in)
