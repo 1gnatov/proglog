@@ -117,10 +117,10 @@ func (s *segment) Remove() error {
 }
 
 // need to make sure we stay under the users disk capacity
-func nearestMultiple(j, k uint64) uint64 {
-	return (j / k) * k
-	// if j >= 0 {
-	// 	return (j / k) * k
-	// }
-	// return ((j - k + 1) / k) * k
-}
+// func nearestMultiple(j, k uint64) uint64 {
+// 	return (j / k) * k
+// 	// if j >= 0 {
+// 	// 	return (j / k) * k
+// 	// }
+// 	// return ((j - k + 1) / k) * k
+// }
