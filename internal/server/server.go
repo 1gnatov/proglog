@@ -4,6 +4,7 @@ import (
 	"context"
 
 	api "github.com/1gnatov/proglog/api/v1"
+	"google.golang.org/grpc"
 )
 
 type CommitLog interface {
@@ -54,6 +55,9 @@ func (s *grpcServer) ProduceStream(stream api.Log_ProduceStreamServer) error {
 			return err
 		}
 		res, err := s.Produce(stream.Context(), req)
+		if err != nil {
+			return err
+		}
 		if err = stream.Send(res); err != nil {
 			return err
 		}
@@ -83,4 +87,14 @@ func (s *grpcServer) ConsumeStream(
 			req.Offset++
 		}
 	}
+}
+
+func NewGrpcServer(config *Config) (*grpc.Server, error) {
+	gsrv := grpc.NewServer()
+	srv, err := newgrpcServer(config)
+	if err != nil {
+		return nil, err
+	}
+	api.RegisterLogServer(gsrv, srv)
+	return gsrv, nil
 }
