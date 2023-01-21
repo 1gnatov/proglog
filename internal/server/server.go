@@ -89,8 +89,8 @@ func (s *grpcServer) ConsumeStream(
 	}
 }
 
-func NewGrpcServer(config *Config) (*grpc.Server, error) {
-	gsrv := grpc.NewServer()
+func NewGrpcServer(config *Config, opts ...grpc.ServerOption) (*grpc.Server, error) {
+	gsrv := grpc.NewServer(opts...)
 	srv, err := newgrpcServer(config)
 	if err != nil {
 		return nil, err
