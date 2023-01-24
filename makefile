@@ -25,7 +25,7 @@ cloudflare-cli:
 	read -p "Press enter to continue"
 	go install github.com/cloudflare/cfssl/cmd/...@latest
 	go install github.com/cloudflare/cfssl/cmd/cfssljson@latest
-
+	export PATH="$PATH:/home/tema/go/bin"
 
 
 # START: begin
@@ -44,13 +44,13 @@ gencert:
 		test/server-csr.json | cfssljson -bare server
 # END: begin
 
-# # START: client
-# 	cfssl gencert \
-# 		-ca=ca.pem \
-# 		-ca-key=ca-key.pem \
-# 		-config=test/ca-config.json \
-# 		-profile=client \
-# 		test/client-csr.json | cfssljson -bare client
+# START: client
+	cfssl gencert \
+		-ca=ca.pem \
+		-ca-key=ca-key.pem \
+		-config=test/ca-config.json \
+		-profile=client \
+		test/client-csr.json | cfssljson -bare client
 # # END: client
 
 # # START: multi_client
