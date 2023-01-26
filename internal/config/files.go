@@ -8,11 +8,15 @@ import (
 
 // look at Makefile gencert
 var (
-	CAFile         = testConfigFile("ca.pem")
-	ServerCertFile = testConfigFile("server.pem")
-	ServerKeyFile  = testConfigFile("server-key.pem")
-	ClientCertFile = testConfigFile("client.pem")
-	ClientKeyFile  = testConfigFile("client-key.pem")
+	CAFile               = testConfigFile("ca.pem")
+	ServerCertFile       = testConfigFile("server.pem")
+	ServerKeyFile        = testConfigFile("server-key.pem")
+	RootClientCertFile   = testConfigFile("root-client.pem")
+	RootClientKeyFile    = testConfigFile("root-client-key.pem")
+	NobodyClientCertFile = testConfigFile("nobody-client.pem")
+	NobodyClientKeyFile  = testConfigFile("nobody-client-key.pem")
+	ACLModelFile         = testConfigFile("model.conf")
+	ACLPolicyFile        = testConfigFile("policy.csv")
 )
 
 // func configFile(filename string) string {
