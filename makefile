@@ -81,3 +81,6 @@ gencert:
 push:
 	git push origin
 	git push gitlab
+
+test-observability:
+	go test ./internal/server/ -v -debug=true
