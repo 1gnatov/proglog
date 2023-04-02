@@ -20,6 +20,9 @@ grpc-install:
 	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	export PATH="$PATH:/home/tema/go/bin"
 
+serf-install:
+	go get github.com/hashicorp/serf@0.10.1
+
 cloudflare-cli:
 	echo "https://github.com/cloudflare/cfssl#installation"
 	read -p "Press enter to continue"
